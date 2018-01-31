@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 class NoteComponent extends Component {
+  
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return this.props.note !== nextProps.note
+  }
+
   componentWillUpdate() {
     console.log('Note componentWillUpdate')
   }
