@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Note from './Note'
 
-class NotesComponent extends Component {
-
-  shouldComponentUpdate = (nextProps) => {
-    return this.props.notes !== nextProps.notes
-  }
+class NotesComponent extends PureComponent {
 
   render() {
     const { onNoteChange, notes } = this.props
