@@ -2,39 +2,23 @@ import React, { Component } from 'react'
 import Note from './Note'
 
 class NotesComponent extends Component {
-  state = {
-    notes: [
-      'Note#1',
-      'Note#2',
-      'Note#3'
-    ]
-  }
 
-  onNoteChange = (index, note) => {
-    this.setState(prevState => {
-      const { notes } = prevState
-
-      return {
-        notes: [
-          ...notes.slice(0, index),
-          note,
-          ...notes.slice(index + 1)
-        ]
-      }
-    })
+  shouldComponentUpdate = (nextProps) => {
+    return this.props.notes !== nextProps.notes
   }
 
   render() {
+    const { onNoteChange, notes } = this.props
     return(
       <ul>
         {
-          this.state.notes.map(
+          notes.map(
             (note, index) => (
               <Note 
                 key={index}
                 index={index}
                 note={note}
-                onNoteChange={this.onNoteChange} />
+                onNoteChange={onNoteChange} />
             )
           )
         }
